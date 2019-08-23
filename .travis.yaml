@@ -8,3 +8,6 @@ script:
   - yarn test
   - yarn run lint 
  This is yaml file
+ script:
+  - yarn test
+  - yarn run lint
