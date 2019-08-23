@@ -7,3 +7,5 @@ cache:
 script:
   - yarn test
   - yarn run lint 
+  
+  THIS IS AN YAML FILE
