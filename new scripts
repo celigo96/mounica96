@@ -1,0 +1,28 @@
+function preMapFunction(options) {
+  return options.data.map((d) => {
+    for (var i = 0 ; i < options.data.length ; i++) {
+            var c = 0;
+            for(var k=0;k< d[0].customers.length;k++) {
+                var customerData = d[0].customers[k]
+                var ocardnum = d[0].CreditCardNumber.substring(12, 16);
+                var ccardnum = customerData['Credit Card Number'].substring(12, 16);
+                var oexpdate = d[0].CreditCardExpirationdate;
+                var cexpdate = customerData['CC Expire Date'].substring(0, 2).concat('/',customerData['CC Expire Date'].substring(5, 7));
+                var ccardline = customerData['Credit Card Internal ID'];
+              console.log(ocardnum + ' -- ' + ccardnum + ' -- ' + oexpdate + ' -- '+ cexpdate + ' -- ')
+              	d[0].CreditCard = d[0].CreditCardNumber;
+              	d[0].Expirationdate = d[0].CreditCardExpirationdate.substring(0, 3).concat('20',d[0].CreditCardExpirationdate.substring(3, 5));
+                d[0].CardType = d[0].CreditCardTypeDescription; 
+                if(ocardnum == ccardnum && oexpdate == cexpdate) {
+                  d[0].LineId = ccardline
+                    c++;   
+                    break;    
+                }
+        }
+        
+    }
+    return {
+      data: d   
+    }
+ })
+}
